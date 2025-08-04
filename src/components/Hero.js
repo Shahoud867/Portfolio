@@ -1,6 +1,6 @@
   import React, { useState, useEffect } from 'react';
   import { motion } from 'framer-motion';
-import NeuralNetwork from './NeuralNetwork';
+
 import ProfilePicture from './ProfilePicture';
 
   const Hero = () => {
@@ -19,37 +19,45 @@ import ProfilePicture from './ProfilePicture';
     }, [currentIndex, fullText]);
 
     return (
-      <section className="relative min-h-screen flex items-center justify-center bg-gray-900 text-white overflow-hidden">
-        <NeuralNetwork />
-        
-        {/* Matrix rain effect */}
-        <div className="absolute inset-0 pointer-events-none">
-          {[...Array(10)].map((_, i) => (
-            <div
-              key={i}
-              className="matrix-rain"
-              style={{
-                left: `${i * 10}%`,
-                animationDelay: `${i * 0.8}s`,
-                animationDuration: `${4 + Math.random()}s`
-              }}
-            >
-              {Math.random().toString(36).substring(7)}
-            </div>
-          ))}
+      <section className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-900 via-indigo-950 to-gray-900 text-white overflow-hidden">
+        {/* Futuristic animated mesh background */}
+        <div className="absolute inset-0 -z-10 pointer-events-none">
+          <svg width="100%" height="100%" viewBox="0 0 1440 800" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
+            <motion.path
+              d="M0,400 Q360,200 720,400 T1440,400"
+              stroke="#a78bfa44"
+              strokeWidth="2"
+              fill="none"
+              initial={{ pathLength: 0.7 }}
+              animate={{ pathLength: [0.7, 1, 0.7] }}
+              transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+            />
+            <motion.circle
+              cx="720"
+              cy="400"
+              r="180"
+              stroke="#a78bfa33"
+              strokeWidth="2"
+              fill="none"
+              initial={{ opacity: 0.5, scale: 1 }}
+              animate={{ opacity: [0.5, 0.8, 0.5], scale: [1, 1.08, 1] }}
+              transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
+            />
+          </svg>
         </div>
 
-        <div className="relative z-10 text-center max-w-4xl mx-auto px-6">
+        {/* Glassmorphism card for content */}
+        <div className="relative z-10 text-center max-w-4xl mx-auto px-6 py-12 rounded-3xl bg-white/5 backdrop-blur-md border border-white/10 shadow-2xl">
           <ProfilePicture />
           <motion.div
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1 }}
           >
-            <h1 className="text-4xl sm:text-6xl md:text-8xl font-bold mb-6 gradient-text">
+            <h1 className="text-4xl sm:text-6xl md:text-8xl font-bold mb-6 gradient-text drop-shadow-lg">
               Data Scientist
             </h1>
-            <h2 className="text-xl sm:text-2xl md:text-4xl mb-8 text-lavender-400">
+            <h2 className="text-xl sm:text-2xl md:text-4xl mb-8 text-lavender-400 drop-shadow">
               & AI Engineer
             </h2>
           </motion.div>
@@ -60,9 +68,9 @@ import ProfilePicture from './ProfilePicture';
             transition={{ delay: 1, duration: 1 }}
             className="mb-12"
           >
-            <p className="text-xl md:text-2xl font-mono">
+            <p className="text-xl md:text-2xl font-mono text-white/90">
               {displayText}
-              <span className="animate-pulse">|</span>
+              <span className="animate-pulse text-lavender-400">|</span>
             </p>
           </motion.div>
 
@@ -87,29 +95,29 @@ import ProfilePicture from './ProfilePicture';
               Get In Touch
             </button>
           </motion.div>
+        </div>
 
-          {/* Floating particles */}
-          <div className="absolute inset-0 pointer-events-none">
-            {[...Array(8)].map((_, i) => (
-              <motion.div
-                key={i}
-                className="absolute w-2 h-2 bg-lavender-400 rounded-full opacity-30"
-                style={{
-                  left: `${Math.random() * 100}%`,
-                  top: `${Math.random() * 100}%`,
-                }}
-                animate={{
-                  y: [0, -30, 0],
-                  opacity: [0.3, 0.8, 0.3],
-                }}
-                transition={{
-                  duration: 4 + Math.random(),
-                  repeat: Infinity,
-                  delay: Math.random() * 3,
-                }}
-              />
-            ))}
-          </div>
+        {/* Floating particles for extra depth */}
+        <div className="absolute inset-0 pointer-events-none z-0">
+          {[...Array(12)].map((_, i) => (
+            <motion.div
+              key={i}
+              className="absolute w-2 h-2 bg-lavender-400 rounded-full opacity-20"
+              style={{
+                left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 100}%`,
+              }}
+              animate={{
+                y: [0, -40, 0],
+                opacity: [0.2, 0.7, 0.2],
+              }}
+              transition={{
+                duration: 5 + Math.random() * 2,
+                repeat: Infinity,
+                delay: Math.random() * 3,
+              }}
+            />
+          ))}
         </div>
 
         {/* Scroll indicator */}
